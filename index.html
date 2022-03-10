@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=.container, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="main-container">
+      <header>
+        <h2>To-Do List</h2>
+        <div class="burger">
+          <div class="line-1"></div>
+          <div class="line-2"></div>
+          <div class="line-3"></div>
+        </div>
+      </header>
+
+      <nav class="navigation">
+        <ul class="nav-list">
+          <li class="nav-link active" id="to-do-btn">To-do</li>
+          <li class="nav-link" id="trash-btn">Trash</li>
+          <li class="nav-link" id="clr-btn">Clear Storage</li>
+        </ul>
+      </nav>
+
+      <div class="list-container">
+        <div class="overlay"></div>
+        <ul id="to-do-list">
+          <!-- New todos will append here -->
+        </ul>
+      </div>
+
+      <div class="input-container">
+        <input
+          id="text-input"
+          type="text"
+          class="text-input"
+          placeholder="Write task here"
+        />
+        <i id="add-btn" class="fas fa-plus-circle"></i>
+      </div>
+    </div>
+  </body>
+</html>

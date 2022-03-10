@@ -1,0 +1,333 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+:root {
+  --bg-light: #f8f9fa;
+  --bg-input: #f5f5f5;
+  --text-dark: #212529;
+  --text-secondary: #6c757d;
+  --primary: #0d6efd;
+  --success: #198754;
+  --danger: #dc3545;
+  --white: #fff;
+  --line-default: #ccc;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container,
+.input-container input {
+  color: var(--text-dark);
+}
+
+.main-container,
+.burger div,
+nav {
+  background-color: var(--white);
+}
+
+.main-container {
+  width: 400px;
+  height: 90vh;
+  border-radius: 1rem;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Selects all the elements whose id ends with 'btn' */
+[id$="btn"]:hover {
+  cursor: pointer;
+}
+
+.main-container header {
+  padding: 1rem;
+  height: 80px;
+  background-color: var(--primary);
+  color: var(--white);
+  border-radius: 1rem 1rem 0 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-container header #clr-btn {
+  color: var(--white);
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 0.8rem;
+  transition: filter 200ms;
+}
+
+/*  Burger menu */
+.burger {
+  cursor: pointer;
+}
+
+/* For each vertical lines of burger menu */
+.burger div {
+  margin: 5px;
+  width: 25px;
+  height: 3px;
+  border-radius: 5px;
+  transition: background-color 300ms ease-in, transform 300ms ease-in,
+    opacity 300ms;
+}
+
+/* This will work only if the burger menu is toggled */
+.close .line-1 {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.close .line-2 {
+  opacity: 0;
+}
+
+.close .line-3 {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Navigation */
+nav {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  bottom: 0;
+  width: 80%;
+  height: calc(100% - 80px);
+  z-index: 2;
+  transform: translateX(100%);
+  transition: transform 400ms ease-in-out;
+}
+
+nav .nav-list {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+nav .nav-list .nav-link {
+  padding: 1rem;
+  cursor: pointer;
+  transition: background 200ms;
+  opacity: 0;
+}
+
+nav .nav-list .nav-link:hover {
+  background-color: var(--bg-light);
+}
+
+.nav-active {
+  transform: translateX(0%);
+  box-shadow: -3px 0 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Active status of navigation button  */
+.active {
+  background-color: var(--bg-light);
+  color: var(--primary);
+}
+
+/* Animation for each nav-links <li> */
+@keyframes navLinkFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(5rem);
+  }
+  to {
+    opacity: 100;
+    transform: translateX(0);
+  }
+}
+
+/* This overlay will appear if the navigation bar is active */
+.focus-out {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* List */
+
+/* Container of <ul> */
+.list-container {
+  flex-grow: 1;
+  position: relative;
+  overflow-y: auto;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+.list-container .empty-state-container {
+  width: 100%;
+  height: max(100%, 400px);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.list-container .empty-state-container .todo-empty-state,
+.list-container .empty-state-container .trash-empty-state {
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.list-container .empty-state-container .todo-empty-state {
+  background-image: url(./img/notes_icon.png);
+}
+
+.list-container .empty-state-container .trash-empty-state {
+  background-image: url(./img/trash_icon.png);
+}
+
+.list-container .empty-state-container p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.freeze {
+  pointer-events: none;
+}
+
+/* <ul> */
+#to-do-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.empty {
+  margin: 0;
+  text-align: center;
+  line-height: 380px;
+}
+
+.input-container input {
+  background-color: var(--bg-input);
+}
+
+#to-do-list li {
+  margin: 0.5rem;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--line-default);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 300ms;
+}
+
+#to-do-list li:hover {
+  background-color: var(--bg-light);
+}
+
+/* Actual text from the user input */
+.list-container #to-do-list li .content {
+  flex: 1;
+}
+
+.list-container li .linethrough {
+  color: var(--line-default);
+  text-decoration: line-through;
+}
+
+/* Icons including fa-circle, fa-check-circle, and fa-trash*/
+.list-container li p {
+  color: var(--text-dark);
+}
+
+.list-container li i {
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 200ms;
+  color: var(--text-secondary);
+}
+
+.fa-circle:hover,
+.list-container li .fa-check-circle {
+  color: var(--success);
+}
+
+.fa-trash-alt:hover {
+  color: var(--danger);
+}
+
+/* This will only work if trash button from user interface is clicked */
+.swipe-left {
+  transform: translateX(-100%);
+}
+
+/* Input field container */
+.input-container {
+  padding: 1rem;
+  margin-top: auto;
+  border-radius: 0 0 0.8rem 0.8rem;
+  border-top: 1px solid var(--line-default);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-container input {
+  flex: 1;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.input-container input:focus {
+  border: 1px solid var(--primary);
+  box-shadow: rgba(13, 110, 253, 0.2) 0px 0px 0px 3px;
+  outline: none;
+}
+
+.input-container #add-btn {
+  color: var(--primary);
+  font-size: 2.2rem;
+  transition: filter 300ms ease-in;
+}
+
+.input-container #add-btn:hover {
+  filter: brightness(90%);
+}
+
+@media only screen and (max-width: 480px) {
+  .main-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
